@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BreatheEasy - Air Quality Awareness</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: "Poppins", sans-serif; scroll-behavior: smooth;}
+body {background:#f9fff9; color:#333; overflow-x:hidden;}
+header {background: rgba(46,125,50,0.95); color:white; text-align:center; padding:20px 10px; position:sticky; top:0; z-index:1000; backdrop-filter:blur(6px);}
+header h1 {margin-bottom:5px;}
+nav a {color:white; text-decoration:none; margin:0 15px; font-weight:500; transition:0.3s;}
+nav a:hover {color:#c8e6c9;}
+section {padding:80px 20px; max-width:1100px; margin:auto;}
+.hero {text-align:center; padding-top:100px; color:white; height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80') no-repeat center/cover; background-attachment: fixed;}
+.hero h2 {font-size:2.8rem; margin-bottom:20px; text-shadow:2px 2px 8px rgba(0,0,0,0.5);}
+.hero p {font-size:1.2rem; margin-bottom:40px; max-width:700px; text-shadow:1px 1px 6px rgba(0,0,0,0.5);}
+.search-box input {padding:10px 20px; border:2px solid #2e7d32; border-radius:8px; outline:none;}
+.search-box button {padding:10px 20px; border:none; background:#2e7d32; color:white; border-radius:8px; margin-left:10px; cursor:pointer; transition:0.3s;}
+.search-box button:hover {background:#1b5e20;}
+.aqi-box {margin-top:40px; padding:30px; background:white; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:300px; text-align:center; display:none; margin-left:auto; margin-right:auto; color:#333;}
+.aqi-value {font-size:2.5rem; font-weight:bold; margin-bottom:10px;}
+.pledge {background:#e8f5e9; text-align:center; padding:60px 20px; margin-top:50px; border-radius:16px;}
+.pledge img {width:100%; max-width:800px; border-radius:12px; margin-top:20px;}
+.pledge button {background:#2e7d32; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; margin-top:10px; font-size:1rem; transition:background 0.3s;}
+.pledge button:hover {background:#1b5e20;}
+#about {display:flex; flex-wrap:wrap; align-items:center; gap:30px;}
+#about img {width:100%; max-width:450px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+#about-text {flex:1;}
+#about h2 {color:#1b5e20; font-size:2rem; margin-bottom:20px;}
+#about p {font-size:1.1rem; line-height:1.7; margin-bottom:20px; text-align:justify;}
+blockquote {text-align:center; font-style:italic; color:#2e7d32; background:#f1f8e9; padding:15px; border-radius:8px;}
+#tips {background:#f1f8e9; border-radius:16px; padding:70px 20px;}
+#tips h2 {color:#1b5e20; font-size:2rem; text-align:center; margin-bottom:30px;}
+.tips-container {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
+.tip {background:white; padding:20px; border-radius:12px; width:280px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.tip img {width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:10px;}
+#contact {text-align:center;}
+#contact h2 {color:#1b5e20; font-size:2rem; margin-bottom:20px;}
+form {display:flex; flex-direction:column; gap:10px; max-width:400px; margin:auto;}
+form input, form textarea {padding:10px; border:1.5px solid #2e7d32; border-radius:8px; font-size:1rem; outline:none;}
+form button {background:#2e7d32; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; transition:background 0.3s;}
+form button:hover {background:#1b5e20;}
+footer {background:#1b5e20; color:white; text-align:center; padding:15px; margin-top:40px;}
+@media(max-width:768px){#about{flex-direction:column;text-align:center;} .hero{height:auto; padding:100px 20px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BreatheEasy</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#tips">Tips</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <h2>Breathe Easy, Live Healthy</h2>
+  <p>Discover your city's air quality and learn how to protect yourself and the planet. Every breath counts.</p>
+  <div class="search-box">
+    <input type="text" id="city" placeholder="Enter your city..." />
+    <button onclick="checkAQI()">Check AQI</button>
+  </div>
+  <div class="aqi-box" id="aqiBox">
+    <h3 id="cityName"></h3>
+    <div class="aqi-value" id="aqiValue">--</div>
+    <p id="aqiStatus"></p>
+  </div>
+</section>
+
+<div class="pledge">
+  <h2>Take the Clean Air Pledge 🌎</h2>
+  <p>Promise to use public transport, plant trees, and reduce plastic waste to keep the air clean.</p>
+  <button onclick="alert('Thank you for pledging for cleaner air! 💚')">Take Pledge</button>
+  <img src="https://images.unsplash.com/photo-1601758173924-8e91f56f3322?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80" alt="Tree Planting">
+</div>
+
+<section id="about">
+  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?crop=entropy&cs=tinysrgb&fit=max&w=800&q=80" alt="Clean Air Awareness">
+  <div id="about-text">
+    <h2>Our Mission</h2>
+    <p>BreatheEasy was created to raise awareness about the importance of clean air. Small actions by many can make a big difference. Our platform provides insights on air quality and encourages sustainable habits.</p>
+    <h2>Why It Matters</h2>
+    <p>Millions are affected by polluted air every year. Together, we can reduce emissions, plant trees, and make our surroundings healthier for everyone.</p>
+    <blockquote>"When you take care of nature, nature takes care of you." 🌍</blockquote>
+  </div>
+</section>
+
+<section id="tips">
+  <h2>Simple Ways to Keep the Air Clean</h2>
+  <div class="tips-container">
+    <div class="tip">
+      <img src="https://images.unsplash.com/photo-1523978591478-c753949ff840?crop=entropy&cs=tinysrgb&fit=max&w=600&q=80" alt="Cycling">
+      <p>🚲 Use public transport or cycle instead of driving.</p>
+    </div>
+    <div class="tip">
+      <img src="https://images.unsplash.com/photo-1596464716121-9cd201f31bda?crop=entropy&cs=tinysrgb&fit=max&w=600&q=80" alt="Indoor Plants">
+      <p>🌱 Keep indoor plants to purify air naturally.</p>
+    </div>
+    <div class="tip">
+      <img src="https://images.unsplash.com/photo-1600585154356-596af9009e82?crop=entropy&cs=tinysrgb&fit=max&w=600&q=80" alt="Solar Energy">
+      <p>⚡ Switch to renewable energy sources where possible.</p>
+    </div>
+    <div class="tip">
+      <img src="https://images.unsplash.com/photo-1578926375605-eaf7559b1455?crop=entropy&cs=tinysrgb&fit=max&w=600&q=80" alt="Recycling">
+      <p>♻️ Recycle waste and reduce plastic usage.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Get in Touch</h2>
+  <p>Have ideas or suggestions? We’d love to hear from you!</p>
+  <form onsubmit="event.preventDefault(); alert('Thank you! We will get back soon.')">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 BreatheEasy | Designed with ❤️ for a cleaner tomorrow</p>
+</footer>
+
+<script>
+function checkAQI(){
+  const city = document.getElementById("city").value.trim();
+  const aqiBox = document.getElementById("aqiBox");
+  const aqiValue = document.getElementById("aqiValue");
+  const cityName = document.getElementById("cityName");
+  const aqiStatus = document.getElementById("aqiStatus");
+  if(city===""){alert("Please enter a city name!"); return;}
+  const aqi = Math.floor(Math.random()*300)+1;
+  cityName.textContent=`Air Quality in ${city}`;
+  aqiValue.textContent=aqi;
+  aqiBox.style.display="block";
+  if(aqi<50){aqiStatus.textContent="Good 🌿"; aqiValue.style.color="#2e7d32";}
+  else if(aqi<100){aqiStatus.textContent="Moderate 🌤️"; aqiValue.style.color="#ffb300";}
+  else if(aqi<200){aqiStatus.textContent="Unhealthy 😷"; aqiValue.style.color="#ef6c00";}
+  else{aqiStatus.textContent="Very Unhealthy 🚫"; aqiValue.style.color="#b71c1c";}
+}
+</script>
+</body>
+</html>
