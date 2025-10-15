@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff; /* soft white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .converter {
+            background: #2c2c2c; /* smooth soft black */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+            color: #ffffff;
+        }
+
+        .converter h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            margin-bottom: 20px;
+            font-size: 16px;
+            background: #444;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #555;
+            color: #ffffff;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #777;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Temperature Converter</h1>
+        <input type="number" id="tempInput" placeholder="Enter temperature">
+        <div>
+            <button onclick="convert('c')">To Celsius</button>
+            <button onclick="convert('f')">To Fahrenheit</button>
+            <button onclick="convert('k')">To Kelvin</button>
+        </div>
+        <div class="result" id="result">Result: </div>
+    </div>
+
+    <script>
+        function convert(to) {
+            const temp = parseFloat(document.getElementById('tempInput').value);
+            let result;
+
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number';
+                return;
+            }
+
+            if (to === 'c') {
+                // Assume input is Fahrenheit, convert to Celsius
+                result = ((temp - 32) * 5/9).toFixed(2) + " °C";
+            } else if (to === 'f') {
+                // Assume input is Celsius, convert to Fahrenheit
+                result = ((temp * 9/5) + 32).toFixed(2) + " °F";
+            } else if (to === 'k') {
+                // Assume input is Celsius, convert to Kelvin
+                result = (temp + 273.15).toFixed(2) + " K";
+            }
+
+            document.getElementById('result').innerText = "Result: " + result;
+        }
+    </script>
+</body>
+</html>
