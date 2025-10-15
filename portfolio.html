@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naresh's Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(120deg, #a3d3a,  #99c4b5 );
+      color: #333;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+    }
+
+    nav h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: #222;
+      font-weight: 600;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #0077ff;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 7rem 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ---------- Home Section ---------- */
+    .home {
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .home h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #004aad;
+    }
+
+    .home p {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+
+    .home span {
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+
+    /* ---------- About Section ---------- */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      animation: slideUp 1.5s ease;
+    }
+
+    .about img {
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 2.3rem;
+      color: #004aad;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .about-text strong {
+      color: #ff6b6b;
+    }
+
+    /* ---------- Skills ---------- */
+    .skills h2, .projects h2, .certifications h2 {
+      text-align: center;
+      color: #004aad;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .card h3 {
+      color: #222;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ---------- Projects ---------- */
+    .project-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* ---------- Certifications ---------- */
+    .cert-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: #222;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #004aad;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .normal-text{
+      font-weight:normal;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>Naresh</h1>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="home" id="home">
+    <h2>Welcome to My Portfolio </h2>
+    <p>Hi, I'm <strong> Asipireddy Naresh</strong> — a <span>Python Developer</span>, <span>Java Developer</span>, <span>Web Designer</span> & <span>Tech Enthusiast</span>.</p>
+    <p>I create smart, beautiful, and efficient digital solutions that inspire growth and creativity.</p>
+  </section>
+
+  <section class="about" id="about">
+    <img src="C:\Users\LIKHITHA REDDY\OneDrive\Desktop\nareshportfolio.jpeg" width="200" height="200" alt="">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hello! I’m Naresh, a B.Tech 3rd-year student at Siddhartha institute of science and technology, Puttur. I’m an enthusiastic learner with a keen interest in technology, problem-solving, and creativity. I believe in continuous learning and always strive to improve myself through new experiences and challenges.
+
+Throughout my academic journey, I’ve developed a strong foundation in engineering concepts, programming, and analytical thinking. I enjoy taking part in projects and activities that allow me to apply my knowledge practically and learn beyond the classroom.
+
+Apart from academics, I’m someone who values balance and creativity in life. I love reading books, as they broaden my perspective and enhance my communication skills. Listening to music helps me stay relaxed and inspired. I’m also passionate about teamwork and enjoy collaborating with others to bring innovative ideas to life.
+
+My goal is to grow into a skilled professional who contributes meaningfully to the tech industry while constantly learning and adapting to new trends. I’m excited to build a career where I can combine creativity, logic, and technology to make a positive impact.</p>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2>Skills</h2>
+    <div class="skill-box">
+      <div class="card"><h3>Python<p class="normal-text">Skilled in writing efficient and logical code for automation, data handling, and problem-solving.
+</p></h3></div>
+      <div class="card"><h3>Java</h3><p class="normal-text">Strong foundation in object-oriented programming and application development.
+</p></div>
+      <div class="card"><h3>HTML & CSS</h3><p class="normal-text">Capable of creating responsive, user-friendly, and visually appealing web pages.
+</p></div>
+      <div class="card"><h3>JavaScript</h3><p class="normal-text"> Familiar with adding interactivity and dynamic behavior to web applications.
+</p></div>
+      <div class="card"><h3>DBMS</h3><p class="normal-text"> Knowledgeable in database design, SQL queries, and data management concepts.
+</p></div>
+      <div class="card"><h3>Software Development</h3><p class="normal-text"> Understanding of the complete software development lifecycle, from design to deployment.</p></div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+    <div class="project-box">
+      <div class="card">
+        <h3>Java Project</h3>
+        <p>Developed a simple Java-based student record management system for efficient data handling.</p>
+      </div>
+      <div class="card">
+        <h3>HTML & CSS Project</h3>
+        <p>Created a Pet Adoption website named <strong>Pawfect Home</strong> to connect pets with loving owners.</p>
+      </div>
+      <div class="card">
+        <h3>Portfolio Website</h3>
+        <p>Designed this responsive personal portfolio using HTML and CSS to showcase my skills and projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="certifications" id="certifications">
+    <h2>Certifications</h2>
+    <div class="cert-box">
+      <div class="card">
+        <h3>Python Programming Certification</h3>
+        <p>Completed a 2-month course on Python covering fundamentals and data handling.</p>
+      </div>
+      <div class="card">
+        <h3>Web Development Workshop</h3>
+        <p>Participated in a hands-on workshop focused on front-end web design using HTML, CSS, and JS.</p>
+      </div>
+      <div class="card">
+        <h3>Java Essentials</h3>
+        <p>Earned certification for mastering Java basics and object-oriented programming principles.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>📧 Email: <a href="mailto:likhitha@example.com">reddynaresh238@gmail.com</a>  
+      
+    </p>
+    <p>© 2025 Naresh Reddy | Made with 💙 passion & creativity</p>
+  </footer>
+
+</body>
+</html>
